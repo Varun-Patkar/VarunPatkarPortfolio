@@ -30,7 +30,8 @@ export default class Room {
 					grpChild.receiveShadow = true;
 				});
 			}
-			if (child.name === "PC_Monitor") {
+			if (child.name === "PCMonitor") {
+				console.log(child);
 				child.children[1].material = new THREE.MeshBasicMaterial({
 					map: this.resources.items.screen,
 				});
@@ -61,5 +62,9 @@ export default class Room {
 			this.lerp.ease
 		);
 		this.actualRoom.rotation.y = this.lerp.current;
+		//Reset rotation if on phone
+		if (window.screen.width < 969) {
+			this.actualRoom.rotation.y = 0;
+		}
 	}
 }

@@ -284,4 +284,37 @@ svg {
 	.section {
 		width: 100%;
 	}
+	.hero-main-title {
+		font-size: 30px;
+		color: var(--color-text);
+		text-shadow: 0 0 8px var(--primary-red), 0 0 12px var(--primary-red);
+	}
+
+	.hero-main-description {
+		font-size: 25px;
+		color: var(--color-text);
+		text-shadow: 0 0 8px var(--primary-red), 0 0 12px var(--primary-red);
+	}
+	.hero-second {
+		position: absolute;
+		top: 6%;
+		right: 0;
+	}
+	.hero-second-subheading {
+		font-size: 22px;
+		color: var(--color-text);
+		text-shadow: 0 0 8px var(--primary-red), 0 0 12px var(--primary-red);
+	}
+	.hero-main {
+		position: absolute;
+		bottom: 6%;
+		left: 0;
+	}
+	.hero-wrapper {
+		position: relative;
+		height: 100%;
+		width: calc(100% - 160px);
+		margin: 0 auto;
+		max-width: 1500px;
+	}
 }
