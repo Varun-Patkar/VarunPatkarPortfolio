@@ -31,7 +31,6 @@ export default class Room {
 				});
 			}
 			if (child.name === "PCMonitor") {
-				console.log(child);
 				child.children[1].material = new THREE.MeshBasicMaterial({
 					map: this.resources.items.screen,
 				});
