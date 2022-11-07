@@ -9,6 +9,7 @@ export default class Room {
 		this.resources = this.experience.resources;
 		this.room = this.resources.items.room;
 		this.actualRoom = this.room.scene;
+		this.roomChildren = {};
 
 		this.lerp = {
 			current: 0,
@@ -35,10 +36,17 @@ export default class Room {
 					map: this.resources.items.screen,
 				});
 			}
+			child.scale.set(0, 0, 0);
+			if (child.name === "Preloader") {
+				// child.scale.set(1, 1, 1);
+				child.position.set(0, 9, 0);
+			}
+			this.roomChildren[child.name.toLowerCase()] = child;
 		});
 
 		this.lamp = new THREE.PointLight(0xffffff, 0, 1);
 		this.lamp.position.set(-4.862711429595947, 13, -4.4);
+		this.roomChildren["lamplight"] = this.lamp;
 		this.actualRoom.add(this.lamp);
 
 		this.scene.add(this.actualRoom);
