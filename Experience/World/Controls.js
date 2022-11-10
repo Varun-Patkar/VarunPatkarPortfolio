@@ -14,7 +14,16 @@ export default class Controls {
 		this.room = this.experience.world.room.actualRoom;
 		GSAP.registerPlugin(ScrollTrigger);
 
-		this.setSmoothScroll();
+		document.querySelector(".page").style.overflow = "visible";
+
+		if (
+			!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent
+			)
+		) {
+			this.setSmoothScroll();
+		}
+
 		this.setScrollTrigger();
 	}
 

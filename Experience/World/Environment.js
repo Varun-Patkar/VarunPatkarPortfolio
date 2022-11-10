@@ -7,7 +7,7 @@ export default class Environment {
 		this.experience = new Experience();
 		this.scene = this.experience.scene;
 		this.resources = this.experience.resources;
-
+		this.theme = "light";
 		this.setLight();
 	}
 
@@ -25,6 +25,7 @@ export default class Environment {
 
 	switchTheme(theme) {
 		this.lamp = this.experience.world?.room.lamp;
+		this.theme = theme;
 		if (this.lamp) {
 			if (theme === "dark") {
 				GSAP.to(this.lamp, {

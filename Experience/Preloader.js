@@ -35,6 +35,13 @@ export default class Preloader extends EventEmitter {
 			if (this.device === "desktop") {
 				this.camera.trackingCamera.position.y = 1.5;
 				this.timeline
+					.to(".preloader", {
+						opacity: 0,
+						delay: 1,
+						onComplete: () => {
+							document.querySelector(".preloader").classList.add("hidden");
+						},
+					})
 					.to(this.roomChildren.preloader.scale, {
 						x: 0.5,
 						y: 0.5,
@@ -43,15 +50,43 @@ export default class Preloader extends EventEmitter {
 						duration: 0.7,
 					})
 					.to(this.room.position, {
-						x: -1,
+						x: -1.2,
 						ease: "power1-out",
 						duration: 0.7,
-						onComplete: resolve,
-					});
+					})
+					.to(
+						".intro-text",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"arrow"
+					)
+					.to(
+						".arrow-svg-wrapper",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+							onComplete: resolve,
+						},
+						"arrow"
+					);
 			} else {
 				this.camera.trackingCamera.position.x = -0.1;
 				this.camera.trackingCamera.position.z = 10;
 				this.timeline
+					.to(".preloader", {
+						opacity: 0,
+						delay: 1,
+						onComplete: () => {
+							document.querySelector(".preloader").classList.add("hidden");
+						},
+					})
+					.set(this.room.position, {
+						z: 3,
+					})
 					.to(this.roomChildren.preloader.scale, {
 						x: 0.5,
 						y: 0.5,
@@ -63,8 +98,26 @@ export default class Preloader extends EventEmitter {
 						z: -1,
 						ease: "power1-out",
 						duration: 0.7,
-						onComplete: resolve,
-					});
+					})
+					.to(
+						".intro-text",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"arrow"
+					)
+					.to(
+						".arrow-svg-wrapper",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+							onComplete: resolve,
+						},
+						"arrow"
+					);
 			}
 		});
 	}
@@ -74,6 +127,24 @@ export default class Preloader extends EventEmitter {
 			if (this.device === "desktop") {
 				this.camera.trackingCamera.position.y = 1.5;
 				this.secondTimeline
+					.to(
+						".intro-text",
+						{
+							autoAlpha: 0,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"arrow1"
+					)
+					.to(
+						".arrow-svg-wrapper",
+						{
+							autoAlpha: 0,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"arrow1"
+					)
 					.to(this.room.position, {
 						x: -0.1,
 						y: 0,
@@ -153,7 +224,6 @@ export default class Preloader extends EventEmitter {
 						z: 1,
 						duration: 1,
 						ease: "power2.out",
-						onComplete: resolve,
 						duration: 0.5,
 					})
 					.to(this.roomChildren.clock.scale, {
@@ -162,7 +232,6 @@ export default class Preloader extends EventEmitter {
 						z: 1,
 						duration: 1,
 						ease: "power2.out",
-						onComplete: resolve,
 						duration: 0.5,
 					})
 					.to(
@@ -185,7 +254,6 @@ export default class Preloader extends EventEmitter {
 							z: 1,
 							duration: 1,
 							ease: "power2.out",
-							onComplete: resolve,
 						},
 						"same1"
 					)
@@ -198,13 +266,68 @@ export default class Preloader extends EventEmitter {
 							duration: 2,
 						},
 						"same1"
+					)
+					.to(
+						".hero-main",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"texttime"
+					)
+					.to(
+						".hero-second",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"texttime"
+					)
+					.to(
+						".arrow-svg-wrapper",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"texttime"
+					)
+					.to(
+						".toggle-bar",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+							onComplete: resolve,
+						},
+						"texttime"
 					);
 			} else {
 				this.secondTimeline
+					.to(
+						".intro-text",
+						{
+							autoAlpha: 0,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"arrow1"
+					)
+					.to(
+						".arrow-svg-wrapper",
+						{
+							autoAlpha: 0,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"arrow1"
+					)
 					.to(this.room.position, {
 						x: -0.1,
 						y: 0,
-						z: 0,
+						z: 3,
 						ease: "power1-out",
 						duration: 0.7,
 					})
@@ -229,6 +352,9 @@ export default class Preloader extends EventEmitter {
 						},
 						"same"
 					)
+					.set(this.room.position, {
+						z: 0,
+					})
 					.to(this.roomChildren.floor.scale, {
 						x: 1,
 						y: 1,
@@ -280,7 +406,6 @@ export default class Preloader extends EventEmitter {
 						z: 1,
 						duration: 1,
 						ease: "power2.out",
-						onComplete: resolve,
 						duration: 0.5,
 					})
 					.to(this.roomChildren.clock.scale, {
@@ -289,7 +414,6 @@ export default class Preloader extends EventEmitter {
 						z: 1,
 						duration: 1,
 						ease: "power2.out",
-						onComplete: resolve,
 						duration: 0.5,
 					})
 					.to(
@@ -312,7 +436,6 @@ export default class Preloader extends EventEmitter {
 							z: 1,
 							duration: 1,
 							ease: "power2.out",
-							onComplete: resolve,
 						},
 						"same1"
 					)
@@ -325,22 +448,100 @@ export default class Preloader extends EventEmitter {
 							duration: 2,
 						},
 						"same1"
+					)
+					.to(
+						".hero-main",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"texttime"
+					)
+					.to(
+						".hero-second",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"texttime"
+					)
+					.to(
+						".arrow-svg-wrapper",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+						},
+						"texttime"
+					)
+					.to(
+						".toggle-bar",
+						{
+							autoAlpha: 1,
+							duration: 0.3,
+							ease: "power1-out",
+							onComplete: resolve,
+						},
+						"texttime"
 					);
 			}
 		});
 	}
 	onScroll(e) {
 		if (e.deltaY > 0) {
-			window.removeEventListener("wheel", this.scrollOnceEvent);
-			this.secondIntro();
+			this.removeEventListeners();
+			this.playSecondIntro();
 		}
+	}
+	onTouch(e) {
+		this.initialY = e.touches[0].clientY;
+	}
+	onTouchMove(e) {
+		let currentY = e.touches[0].clientY;
+		let difference = this.initialY - currentY;
+		if (difference > 0) {
+			this.removeEventListeners();
+			this.playSecondIntro();
+		}
+		this.initialY = null;
+	}
+	removeEventListeners() {
+		//Desktop
+		window.removeEventListener("wheel", this.scrollOnceEvent);
+		//Mobile
+		window.removeEventListener("touchstart", this.touchStart);
+		window.removeEventListener("touchmove", this.touchStart);
 	}
 	async playIntro() {
 		await this.firstIntro();
+		this.moveFlag = true;
+		//Desktop
 		this.scrollOnceEvent = this.onScroll.bind(this);
 		window.addEventListener("wheel", this.scrollOnceEvent);
+		//Mobile
+		this.touchStart = this.onTouch.bind(this);
+		this.touchMove = this.onTouchMove.bind(this);
+		window.addEventListener("touchstart", this.touchStart);
+		window.addEventListener("touchmove", this.touchMove);
 	}
 	async playSecondIntro() {
+		this.moveFlag = false;
 		await this.secondIntro();
+		this.emit("enableControls");
+	}
+
+	move() {
+		if (this.device === "desktop") {
+			this.room.position.set(-1.2, 0, 0);
+		} else {
+			this.room.position.set(0, 0, -1);
+		}
+	}
+	update() {
+		if (this.moveFlag) {
+			this.move();
+		}
 	}
 }
