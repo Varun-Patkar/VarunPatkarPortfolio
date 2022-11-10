@@ -22,7 +22,7 @@ I am following an 8 hr tutorial by Andrew Woan where he recreated an Awwwards We
 
 ## Deployment
 
-**Not Deployed Yet**
+Deployed via Vercel.com : [Deployment](https://varun-patkar-portfolio.vercel.app/)
 
 ## Installation and How to run it on your Machine
 
